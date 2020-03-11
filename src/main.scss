@@ -18,11 +18,22 @@ html, body {
   flex-direction: column;
 }
 
+// ime-mode: disabled;
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button:focus, button:active {
+  outline: none;
+}
+
 .ripple-button {
   margin-bottom: 50px;
 }
 
-button {
+.ripple-button button {
   position: relative;
   padding: 10px 25px;
   font-size: 16px;
@@ -32,9 +43,6 @@ button {
   box-shadow: 0 4px 5px rgba(0,0,0,0.25);
   overflow: hidden;
   margin: 0 10px;
-  &:focus, &:active {
-    outline: none;
-  }
   &.default {
     color: #333;
     background-color: #e0e0e0;
@@ -87,7 +95,7 @@ button {
 
 .form-wrap {
   width: 450px;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 30px;
   text-align: center;
   box-sizing: border-box;
@@ -142,20 +150,69 @@ form {
   }
 }
 
+.progress {
+  position: relative;
+  margin: 8px;
+}
+
 .progress-button {
-  width: 56px;
-  height: 56px;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: none;
   box-shadow: 0 4px 5px rgba(0,0,0,0.25);
   border-radius: 100%;
   padding: 0;
   background-color: #1976d2;
   color: #fff;
   font-size: 22px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: darken(#1976d2, 15);
+  }
 }
 
-// ime-mode: disabled;
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.progress-complete {
+  background-color: #4caf50;
+}
+
+.progress-spin {
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 72px;
+  height: 72px;
+  color: #4caf50;
+  z-index: 1;
+  animation: spin 2s infinite linear;
+}
+
+circle {
+  stroke: currentColor;
+  stroke-dasharray: 80px 200px;
+  stroke-dashoffset: 0px;
+  animation: circleDash 2s infinite linear
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circleDash {
+  0% {
+    stroke-dasharray: 1px 200px;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100px 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px 200px;
+    stroke-dashoffset: -125px;
+  }
 }

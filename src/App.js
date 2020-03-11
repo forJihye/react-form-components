@@ -18,7 +18,7 @@ const App = () => {
 
     <div className="form-wrap">
       <FormValidation validated={validated}>
-        <Button variant="primary" onClick={handleValidated}>submit</Button>
+        {/* <Button variant="primary" onClick={handleValidated}>submit</Button> */}
       </FormValidation>
     </div>
 
