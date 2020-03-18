@@ -3,40 +3,40 @@ import React, { createContext, useState } from 'react'
 const FormContext = createContext()
 
 export const FormProvider = props => {
-  const [state, setState] = useState({})
+  const [validation, setValidation] = useState({})
   const value = {
-    state,
-    setState: data => setState(Object.assign(state, data))
+    validation,
+    setValidation: data => setValidation(Object.assign(validation, data))
   }
-  
-  return <>
-    <FormContext.Provider
-      {...props}
-      value={value}
-    ></FormContext.Provider>
-  </>
+  return <FormContext.Provider {...props} value={value} />
 }
 
-export const withFormContext = WrappedComponent => props => {
-  return <>
+export const withFormContext = WrappedComponents => props => {
+  const [invalid, setInvalid] = useState(false)
+  return (
     <FormContext.Consumer>
       {
-        ({state, setState}) => {
-          const validate = props.validate
+        ({validation, setValidation}) => {
+          const validate = props.validate 
           ? (value) => {
-            const result = props.validate(value)
-            setState({[props.name]: result})
-            console.log(state)
-            return state
-          }
+              const state = props.validate(value)
+              setValidation({[props.name]: state ? state : setInvalid})
+              
+              return state
+            }
           : () => true
 
-          return <WrappedComponent 
-            {...props}
+          !(props.name in validation) && validate('')
+
+          return <WrappedComponents 
+            {...props} 
             validate={validate} 
-          ></WrappedComponent>
+            invalid={invalid} 
+            setInvalid={setInvalid} 
+            validation={validation} 
+          />
         }
       }
     </FormContext.Consumer>
-  </>
+  )
 }

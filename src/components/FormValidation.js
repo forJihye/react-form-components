@@ -1,6 +1,6 @@
 import React from 'react'
-import PhoneInput from './PhoneInput'
-import EmailInput from './EmailInput'
+import PhoneInput from './Phone'
+import EmailInput from './Email'
 
 const FormValidation = ({children, validated}) => {
   return <>

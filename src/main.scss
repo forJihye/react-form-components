@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
@@ -105,29 +106,39 @@ button:focus, button:active {
 
 .form-group {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   margin-bottom: 20px;
 }
-label {
+label,
+.label {
+  display: inline-block;
+  width: 20%;
   text-align: left;
   font-size: 14px;
   color: #333; 
-  display: block;
-  margin-bottom: 10px;
+  vertical-align: middle;
+}
+label > input,
+.label > input {
+  margin-right: 5px;
 }
 .form-control {
   display: inline-block;
-  width: 100%;
+  width: 80%;
   padding: 12px 10px;
-  box-sizing: border-box;
   border: 1px solid #ddd;
   font-size: 14px;
   border-radius: 3px;
+  vertical-align: middle;
   &:focus {
     outline: none;
     border-color: #888;
   }
 }
 .feedback {
+  width: 100%;
   text-align: left;
   font-size: 13px;
   margin-top: 5px;
