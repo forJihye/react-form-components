@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Input from '~/components/form/Input'
 import { FormProvider } from '~/components/form/FormContext'
 import Send from '~/components/form/Send'
+import SendMail from '~/helper/send-mail'
 
 const REGEX_EMAIL = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 const Form = () => {
+  const form = useRef(null)
+
   return <div className="form-wrap">
     <FormProvider>
-      <form>
+      <form ref={form}>
         <Input
           type="text"
           label="이름"
@@ -38,7 +41,7 @@ const Form = () => {
           validate={(value) => Boolean(value.length)}
         />
       </form>
-      <Send></Send>
+      <Send onSubmit={() => SendMail(form.current)}></Send>
     </FormProvider>
   
       {/* <Field.RadioGroup legend="성별" feedback="성별을 선택하세요">
