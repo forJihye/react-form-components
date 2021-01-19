@@ -19,7 +19,6 @@ html, body {
   flex-direction: column;
 }
 
-// ime-mode: disabled;
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -44,27 +43,27 @@ button:focus, button:active {
   box-shadow: 0 4px 5px rgba(0,0,0,0.25);
   overflow: hidden;
   margin: 0 10px;
-  &.default {
-    color: #333;
-    background-color: #e0e0e0;
-  }
-  &.default:hover {
-    background-color: darken(#e0e0e0, 10);
-  }
-  &.primary {
-    color: #fff;
-    background-color: #1976d2;
-  }
-  &.primary:hover {
-    background-color: darken(#1976d2, 10);
-  }
-  &.danger {
-    color: #fff;
-    background-color: rgb(220, 0, 78);
-  }
-  &.danger:hover {
-    background-color: darken(rgb(220, 0, 78), 10);
-  }
+}
+.ripple-button button.default {
+  color: #333;
+  background-color: #e0e0e0;
+}
+.ripple-button button.default:hover {
+  background-color: darken(#e0e0e0, 10);
+}
+.ripple-button button.primary {
+  color: #fff;
+  background-color: #1976d2;
+}
+.ripple-button button.primary:hover {
+  background-color: darken(#1976d2, 10);
+}
+.ripple-button button.danger {
+  color: #fff;
+  background-color: rgb(220, 0, 78);
+}
+.ripple-button button.danger:hover {
+  background-color: darken(rgb(220, 0, 78), 10);
 }
 
 .button-circle {
@@ -132,10 +131,10 @@ label > input,
   font-size: 14px;
   border-radius: 3px;
   vertical-align: middle;
-  &:focus {
-    outline: none;
-    border-color: #888;
-  }
+}
+.form-control:focus {
+  outline: none;
+  border-color: #888;
 }
 .feedback {
   width: 100%;
@@ -152,13 +151,11 @@ label > input,
   color: rgb(220, 0, 78);
 }
 
-form.was-validated {
-  .form-control:valid {
-    border-color: #4caf50;
-  }
-  .form-control:invalid  {
-    border-color: rgb(220, 0, 78);
-  }
+form.was-validated .form-control:valid {
+  border-color: #4caf50;
+}
+form.was-validated .form-control:invalid  {
+  border-color: rgb(220, 0, 78);
 }
 
 .progress {
@@ -180,9 +177,9 @@ form.was-validated {
   cursor: pointer;
   z-index: 2;
   transition: background-color 0.3s ease;
-  &:hover {
-    background-color: darken(#1976d2, 15);
-  }
+}
+.progress-button:hover {
+  background-color: darken(#1976d2, 15);
 }
 
 .progress-complete {

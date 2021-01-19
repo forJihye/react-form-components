@@ -4,8 +4,8 @@ import Form from './page/Form'
 
 const App = () => {
   return <>
-    {/* <Custom /> */}
-    <Form />
+    <Custom />
+    {/* <Form /> */}
   </>
 }
 

@@ -10,6 +10,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "stompjs": "^2.3.3",
+    "style-loader": "^2.0.0",
     "sweetalert": "^2.1.2"
   },
   "devDependencies": {

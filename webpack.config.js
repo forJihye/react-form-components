@@ -5,12 +5,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const { spawn } = require('child_process')
 
 const isDev = process.env.NODE_ENV === 'development'
 const pathResolve = (...v) => path.resolve(__dirname, ...v)
 const fs = require('fs')
-const {name, version} = JSON.parse(fs.readFileSync('./package.json'))
 
 module.exports = {
   mode: isDev ? 'development' : 'production',
@@ -24,16 +22,21 @@ module.exports = {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: isDev,
+        use: !isDev 
+          ? [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '/'
+              }
             },
-          },
+            'css-loader',
+            'sass-loader',
+          ]
+          : [
           'css-loader',
-          'sass-loader',
-        ],
+          'sass-loader'
+        ] 
       },
       {
         test: /\.(js|jsx)$/,

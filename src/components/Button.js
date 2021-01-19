@@ -25,6 +25,7 @@ const Button = ({children, variant, onClick, type}) => {
     }
     
     setCircles(prev => [...prev, {count: ++i, style: circleStyle}])
+    console.log(circles)
     setTimeout(setCircles, 500, prev => prev.slice(1))
     
     if(typeof onClick === 'function') onClick(event)
@@ -38,7 +39,7 @@ const Button = ({children, variant, onClick, type}) => {
       className={variant}
     >
       {children}
-      {circles.map(({count, style}) => <Circle key={`button-circle-${count}`} style={style}></Circle>)}
+      {/* {circles.map(({count, style}) => <Circle key={`button-circle-${count}`} style={style}></Circle>)} */}
     </button>
   </>
 }
